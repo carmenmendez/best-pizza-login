@@ -1,3 +1,11 @@
+:root {
+  --color-primary: #f2c04c;
+  --gray-color: #959595;
+  --dim-color: #d9d9d9;
+  --bg-color: #f4f4f4;
+
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,11 +18,13 @@ body {
   font-size: 25px;
   font-weight: 700;
 }
+
 .text-base {
   font-size: 16px;
   font-weight: 400;
-  color: #959595;
+  color: var(--gray-color);
 }
+
 .text-small-highlight {
   font-size: 12px;
   font-weight: 700;
@@ -44,12 +54,15 @@ main {
 }
 
 .login {
-  background-color: #f4f4f4;
+  background-color: var(--bg-color);
   border-radius: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 64px 32px;
+  min-height: calc(100vh - 200px);
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 form {
@@ -61,34 +74,54 @@ form {
 
 input.input-base {
   text-decoration: none;
-  border: 1px solid #959595;
+  border: 1px solid var(--gray-color);
   border-radius: 8px;
-  width: 270px;
   height: 56px;
-  background-color: #F4F4F4;
-  color:  #D9D9D9;
+  background-color: var(--bg-color);
+  color: var(--dim-color);
   padding-left: 16px;
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 16px);
+  background-position-y: center;
 }
 
-input[type="email"] {
+.input-icon-user {
   background-image: url(images/user.svg);
-  background-repeat: no-repeat;
-  background-position-x: calc(100% - 16px);
-  background-position-y: center;
 }
 
-input[type="password"] {
+.input-icon-lock {
   background-image: url(images/lock.svg);
-  background-repeat: no-repeat;
-  background-position-x: calc(100% - 16px);
-  background-position-y: center;
 }
 
 input[type="submit"] {
-  background-color: #F2C04C;
+  background-color: var(--color-primary);
   font-size: 16px;
   font-weight: 400;
   height: 51px;
   border-radius: 8px;
   border: none;
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    background-color: #252526;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    min-height: 100vh;
+  }
+
+  .pizza-img {
+    height: 100%;
+  }
+
+  .realistic-pizza {
+    max-width: 500px;
+    top: calc(50% - 240px);
+    left: calc(50% - 240px);
+  }
+
+  .login {
+    border-radius: 0px;
+  }
 }
