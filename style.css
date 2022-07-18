@@ -78,11 +78,14 @@ input.input-base {
   border-radius: 8px;
   height: 56px;
   background-color: var(--bg-color);
-  color: var(--dim-color);
   padding-left: 16px;
   background-repeat: no-repeat;
   background-position-x: calc(100% - 16px);
   background-position-y: center;
+}
+
+input.input-base.input-error {
+  border-color: red;
 }
 
 .input-icon-user {
@@ -100,6 +103,19 @@ input[type="submit"] {
   height: 51px;
   border-radius: 8px;
   border: none;
+}
+
+::placeholder {
+  color: var(--dim-color);
+}
+
+p.error-description {
+  color: red;
+  display: none;
+}
+
+p.error-description.visible {
+  display: block;
 }
 
 @media screen and (min-width: 992px) {
