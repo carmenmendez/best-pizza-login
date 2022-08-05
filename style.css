@@ -84,8 +84,12 @@ input.input-base {
   background-position-y: center;
 }
 
-input.input-base.input-error {
+input.input-base.error {
   border-color: red;
+}
+
+input.input-base.valid {
+  border-color: rgb(15, 177, 15);
 }
 
 .input-icon-user {

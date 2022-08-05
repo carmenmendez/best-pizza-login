@@ -18,11 +18,11 @@
         <img src="images/logo.png" alt="logo pizza">
         <h1 class="text-title">Bienvenido</h1>
         <h2 class="text-base">A las mejores pizzas del país</h2>
-        <form action="login">
-          <input class="input-base input-error input-icon-user" type="email" name="Email" placeholder="Email" id="">
-          <p class="error-description"></p>
-          <input class="input-base input-error input-icon-lock" type="password" name="Password" placeholder="Password" id="">
-          <p class="error-description"></p>
+        <form novalidate>
+          <input class="input-base input-icon-user" type="email" name="Email" placeholder="Email" id="">
+          <p data-error="email" class="error-description"></p>
+          <input class="input-base input-icon-lock" type="password" name="Password" placeholder="Password" id="">
+          <p data-error="password" class="error-description"></p>
           <h3 class="text-small-highlight">¿Olvidaste tu contraseña?</h3>
           <input type="submit" value="Iniciar Sesión">
         </form>
