@@ -1,4 +1,5 @@
 import './style.css'
+import toastr from 'toastr'
 
 var inputEmailElement = document.querySelector('input[type="email"]')
 var errorEmailElement = document.querySelector('p[data-error="email"]')
@@ -28,7 +29,6 @@ function handleValidation(isValid, inputElement, errorElement) {
   }
 }
 
-
 inputEmailElement.addEventListener('change', (e) => {
   var regExp = new RegExp(/^\w+@\w+\.\w+$/);
   const emailValid = regExp.test(e.target.value)
@@ -45,8 +45,8 @@ inputPasswordElement.addEventListener('change', (e) => {
 formElement.addEventListener('submit', (e) => {
   e.preventDefault()
   if (validForm.email && validForm.password) {
-    alert('')
+    toastr.success('Login success')
   } else {
-    alert('El formulario debe llenarse correctamente')
+    toastr.warning('El formulario debe llenarse correctamente')
   }
 })
