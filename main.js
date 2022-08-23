@@ -1,5 +1,6 @@
 import './style.css'
 import toastr from 'toastr'
+import axios from 'axios'
 
 var inputEmailElement = document.querySelector('input[type="email"]')
 var errorEmailElement = document.querySelector('p[data-error="email"]')
@@ -30,34 +31,23 @@ function handleValidation(isValid, inputElement, errorElement) {
 }
 
 function handleLogin(email, password) {
-  // create Payload and fetch configuration
+  // create Payload
   const data = {
     email,
     password
   }
 
-  const fetchOptions = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  }
-
   // fetch POST /login
-  fetch('http://localhost:3001/login', fetchOptions)
-    .then((rawResponse) => {
-      return rawResponse.json()
-    })
+  axios.post('http://localhost:3001/login', data)
     .then((loginResponse) => {
-      if(loginResponse.error){
-        toastr.error(loginResponse.error)
-      } else {
-        toastr.success(`${loginResponse.user.name} bienvenid@ a Best Pizza`)
-      }
+      toastr.success(`${loginResponse.data.user.name} bienvenid@ a Best Pizza`)
     }).catch((error) => {
       console.log(error)
-      toastr.error('Ups! Ha ocurrido un error por favor intenta mas tarde')
+      if(error.response.data && error.response.data.error){
+        toastr.error(error.response.data.error)
+      } else {
+        toastr.error('Ups! Ha ocurrido un error por favor intenta mas tarde')
+      }
     })
 }
 
