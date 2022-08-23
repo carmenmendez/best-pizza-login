@@ -29,6 +29,38 @@ function handleValidation(isValid, inputElement, errorElement) {
   }
 }
 
+function handleLogin(email, password) {
+  // create Payload and fetch configuration
+  const data = {
+    email,
+    password
+  }
+
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }
+
+  // fetch POST /login
+  fetch('http://localhost:3001/login', fetchOptions)
+    .then((rawResponse) => {
+      return rawResponse.json()
+    })
+    .then((loginResponse) => {
+      if(loginResponse.error){
+        toastr.error(loginResponse.error)
+      } else {
+        toastr.success(`${loginResponse.user.name} bienvenid@ a Best Pizza`)
+      }
+    }).catch((error) => {
+      console.log(error)
+      toastr.error('Ups! Ha ocurrido un error por favor intenta mas tarde')
+    })
+}
+
 inputEmailElement.addEventListener('change', (e) => {
   var regExp = new RegExp(/^\w+@\w+\.\w+$/);
   const emailValid = regExp.test(e.target.value)
@@ -45,7 +77,10 @@ inputPasswordElement.addEventListener('change', (e) => {
 formElement.addEventListener('submit', (e) => {
   e.preventDefault()
   if (validForm.email && validForm.password) {
-    toastr.success('Login success')
+    // Get form data
+    const email = inputEmailElement.value
+    const password = inputPasswordElement.value
+    handleLogin(email, password)
   } else {
     toastr.warning('El formulario debe llenarse correctamente')
   }
