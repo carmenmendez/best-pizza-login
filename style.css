@@ -46,11 +46,25 @@ main {
   overflow: hidden;
 }
 
+/* CSS Animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .realistic-pizza {
   max-width: 250px;
   position: absolute;
   bottom: -95px;
   left: calc(50% - 125px);
+  animation-name: rotate;
+  animation-duration: 8s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .login {
